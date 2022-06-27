@@ -77,8 +77,8 @@ def timingFileCompiler(filesList, mode):
     """
     tempFileList=[]
     if len(filesList)>1:
-        file1=filesList[0][0]
-        file2=filesList[1][0]
+        file1=filesList[0]
+        file2=filesList[1]
         with open(file1) as f1:
             lines1 = f1.readlines()
         with open(file2) as f2:
@@ -113,8 +113,11 @@ def recursiveFolderExplorer(directory, mode, firstPass=True, secondPass=False, t
     for SubjNum in SubjList:
         outputFilePath=directory+"/sub-"+ SubjNum +"/func/timingFiles/"+outputName[0]+".txt"
         #print("outputFilePath: "+outputFilePath)
+        subjTimingFileList=[]
+        for i in timingFileList:
+            subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func" + i[0][i[0].rfind("/"):])
         with open(outputFilePath, 'w') as f:
-            f.writelines('\n'.join(timingFileCompiler(timingFileList, mode)))
+            f.writelines('\n'.join(timingFileCompiler(subjTimingFileList, mode)))
             f.close
             print("Adding " + outputName[0] + " to subject #" + str(SubjNum) + " out of 132...")
             message=("#" * currentSubject[0]) + "_" * (124 - currentSubject[0])
