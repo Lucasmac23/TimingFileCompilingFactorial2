@@ -41,7 +41,15 @@ for i in totalContrastList:
                     if j not in dictList:
                         print("Adding Timing Files for: " + j)
                         checker=False
-                        input("Continue?")
+                        if input("Continue?")=="yes":
+                            tempSplitting=j.split("_")
+                            timingFile1=baseTimingFiles[tempSplitting[0]]
+                            timingFile2=baseTimingFiles[tempSplitting[1]]
+                            mode="overlap"
+                            baseTimingFiles[i]: recursiveFolderExplorer(directory, mode=mode,
+                                                                        timingFileList=[[timingFile1], [timingFile2]],
+                                                                        outputName=[outputName])
+
            if checker:
                     timingFile1=baseTimingFiles[tempList[0]]
                     timingFile2=baseTimingFiles[tempList[1]]
