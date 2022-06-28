@@ -62,13 +62,17 @@ def numberOverlap(d1, d2):
     if len(d3)==0:
         d3.append("*")
     return d3
-def numberAdder(d1, d2):
-    d3=[]
-    d3=d1+d2
-    d3=sorted(list(map(float, d3)))
+def numberAdder(d1, d2, rewrite=False):
+    if rewrite:
+        d3=d1+d2
+        return list(map(str,d3))
+    else:
+        d3=[]
+        d3=d1+d2
+        d3=sorted(list(map(float, d3)))
     return list(map(str,d3))
 
-def timingFileCompiler(filesList, mode):
+def timingFileCompiler(filesList, mode, rewrite):
     """def: splits up the files in filelist into lines and then makes a list containing each number in each line.
         parameters: filesList=list of the paths to the timing files needed to be compiled
                     mode = ("overlap" -> taking the overlap of the timing files (where they have the same numbers)
@@ -89,7 +93,13 @@ def timingFileCompiler(filesList, mode):
             if mode=="overlap":
                 tempFileList.append(numberOverlap(splitlines1, splitlines2))
             elif mode=="addition":
-                tempFileList.append(numberAdder(splitlines1,splitlines2))
+                if "*" in splitlines2 and "*" in splitlines1:
+                    rewrite=True
+                elif "*" in splitlines2:
+                    splitlines2=[]
+                elif "*" in splitlines1:
+                    splitlines1=[]
+                tempFileList.append(numberAdder(splitlines1,splitlines2,rewrite))
         for num in range(len(tempFileList)):
             tempFileList[num]=" ".join(tempFileList[num])
         return tempFileList
@@ -99,7 +109,7 @@ def timingFileCompiler(filesList, mode):
             lines1 = f1.readlines()
         for i in range(4):
             splitlines1 = (lines1[i].split())
-            tempFileList.append(numberAdder(splitlines1, []))
+            tempFileList.append(numberAdder(splitlines1, [], rewrite))
         for num in range(len(tempFileList)):
             tempFileList[num] = " ".join(tempFileList[num])
         return tempFileList
@@ -107,23 +117,27 @@ def timingFileCompiler(filesList, mode):
         #At end, have to change filesList[0] to the compiled timing file
 
 #recursively Iterate through directory to get individual subject timing files in timing File List
-def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], override=False):
+def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], rewrite=False, override=False):
     SubjList = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '011', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '027', '028', '029', '030', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083', '084', '085', '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', '097', '099', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '113', '114', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127', '128', '129', '130', '131', '132']
     for SubjNum in SubjList:
         outputFilePath=directory+"/sub-"+ SubjNum +"/func/timingFiles/"+outputName[0]+".txt"
         #print("outputFilePath: "+outputFilePath)
         subjTimingFileList=[]
-        if not override:
+        if not rewrite:
             for i in timingFileList:
-                subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles/" + i[0][i[0].rfind("/"):])
+                subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles" + i[0][i[0].rfind("/"):])
         else:
             for i in timingFileList:
-                subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles/" + i[0][i[0].rfind("/"):])
+                subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/" + i[0][i[0].rfind("/"):])
+        print("Adding " + outputName[0] + " to subject #" + str(SubjNum) + " out of 132...")
+        message = ("#" * int(SubjNum)) + "_" * (len(SubjList) - int(SubjNum))
+        print(message)
         with open(outputFilePath, 'w') as f:
-            f.writelines('\n'.join(timingFileCompiler(subjTimingFileList, mode)))
+            fileContents=('\n'.join(timingFileCompiler(subjTimingFileList, mode, rewrite)))
+            if fileContents=='':
+                input("ERROR----timingFile Script Writing Empty File")
+            f.writelines(fileContents)
             f.close
-            print("Adding " + outputName[0] + " to subject #" + str(SubjNum) + " out of 132...")
-            message = ("#" * int(SubjNum)) + "_" * (len(SubjList) - int(SubjNum))
-            print(message)
+
     return outputFilePath
 
