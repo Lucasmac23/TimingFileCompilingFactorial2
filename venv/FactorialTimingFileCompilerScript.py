@@ -115,7 +115,7 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], o
         subjTimingFileList=[]
         if not override:
             for i in timingFileList:
-                subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func" + i[0][i[0].rfind("/"):])
+                subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles/" + i[0][i[0].rfind("/"):])
         else:
             for i in timingFileList:
                 subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles/" + i[0][i[0].rfind("/"):])

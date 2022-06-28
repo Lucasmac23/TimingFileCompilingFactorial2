@@ -96,7 +96,7 @@ for i in totalContrastList:
             currentContrastNumber += 1
             returnTest=recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]], override=override,
                                     outputName=[outputName])
-            baseTimingFiles[i]=returnTest
+            baseTimingFiles[outputName]=returnTest
             return currentContrastNumber
 
 
