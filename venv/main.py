@@ -27,10 +27,10 @@ currentContrastNumber=1
 
 def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], outputName="", totalContrastListLength=0,
                  currentContrastNumber=0, override=False, rewrite=False):
-    print("***************************************")
-    print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...")
-    print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber))
-    print("***************************************")
+    print("***************************************", end='\r')
+    print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\r')
+    print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber), end='\r')
+    print("***************************************", end='\r')
     currentContrastNumber += 1
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
@@ -76,9 +76,9 @@ else:
         abortRedundantError=False
         if i not in dictList:
             outputName=i
-            print("-------------------------------")
-            print("Adding Timing Files for: " + i)
-            print("-------------------------------")
+            print("-------------------------------", end='\r')
+            print("Adding Timing Files for: " + i, end='\r')
+            print("-------------------------------", end='\r')
             #Need to edit this part to switch between overlap and addition modes. If addition mode, need to feed in the right timing file (e.g., "VFraming+MFraming")
             if indvContrastList.count("Mixed") + indvContrastList.count("Gist") + indvContrastList.count("Verbatim") >= 2:
                tempList=[]
@@ -97,7 +97,7 @@ else:
                        else:
                             if j not in dictList:
                                 localOutputName=j
-                                print("Adding Timing Files for: " + j)
+                                print("Adding Timing Files for: " + j, end='\r')
                                 #reply=input("Continue? (yes/override): ")
                                 reply="yes"
                                 if reply=="yes":
