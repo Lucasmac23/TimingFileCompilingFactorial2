@@ -46,7 +46,6 @@ def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], 
 
 #[Gist,Gain,Risk, Framing, Mixed,Loss,NoFraming,Sure,Verbatim
 baseTimingFilesCopyDict={
-"Test":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/TestingTimingFile.txt",
 "Money":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/Money.txt",
 "Candy":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/Candy.txt",
 "Small":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/Small.txt",
