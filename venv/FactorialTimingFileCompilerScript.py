@@ -41,14 +41,12 @@ def numberOverlap(d1, d2):
                         d3+=[str(d1[i])]
                     else:
                         j+=1
-                return d3
             elif j+1==len(d2):
                 while i<len(d1):
                     if d1[i]==d2[j]:
                         d3+=[str(d1[i])]
                     else:
                         i+=1
-                return d3
             elif float(d1[i])==float(d2[j]):
                 d3+=[str(d1[i])]
                 i+=1
