@@ -62,7 +62,6 @@ baseTimingFilesCopyDict={
 "Risk":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/HC_01_Risk.txt"
 }
 rewrite = input("Would you like to rewrite copies of base timing files? (y/n): ")=="y"
-os.system('clear')
 if rewrite:
     for thing in baseTimingFilesCopyDict.keys():
         outputName=thing
