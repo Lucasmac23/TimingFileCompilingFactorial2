@@ -91,12 +91,9 @@ else:
                    checker=True
                    breaker=False
                    for j in tempList:
-                       if breaker:
-                           break
-                       else:
                             if j not in dictList:
                                 localOutputName=j
-                                print("Adding Timing Files for: " + j)
+                                print("Adding Timing Files for: " + j +"\n")
                                 #reply=input("Continue? (yes/override): ")
                                 reply="yes"
                                 if reply=="yes":
@@ -117,7 +114,7 @@ else:
                                                                          timingFile2, outputName, totalContrastListLength,
                                                                          currentContrastNumber, override=True, rewrite=rewrite)
                                     checker=False
-                                    breaker=True
+                                    abortRedundantError=True
                                 else:
                                     checker=False
                    if checker:
