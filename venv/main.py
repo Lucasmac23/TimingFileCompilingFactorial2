@@ -28,10 +28,8 @@ currentContrastNumber=1
 
 def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], outputName="", totalContrastListLength=0,
                  currentContrastNumber=0, override=False, rewrite=False):
-    print("***************************************", end='\r')
     print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\r')
-    print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber), end='\r')
-    print("***************************************", end='\r')
+    print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
@@ -62,7 +60,6 @@ baseTimingFilesCopyDict={
 "Risk":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/HC_01_Risk.txt"
 }
 rewrite = input("Would you like to rewrite copies of base timing files? (y/n): ")=="y"
-os.system('clear')
 
 if rewrite:
     for thing in baseTimingFilesCopyDict.keys():
@@ -73,15 +70,14 @@ if rewrite:
                     totalContrastListLength,outputName=outputName,
                      override=False, rewrite=True)
 else:
+    os.system('clear')
     for i in totalContrastList:
         indvContrastList=i.split("_")
         dictList=baseTimingFiles.keys()
         abortRedundantError=False
         if i not in dictList:
             outputName=i
-            print("-------------------------------")
-            print("Adding Timing Files for: " + i)
-            print("-------------------------------")
+            print("Adding Timing Files for: " + i +"\n")
             #Need to edit this part to switch between overlap and addition modes. If addition mode, need to feed in the right timing file (e.g., "VFraming+MFraming")
             if indvContrastList.count("Mixed") + indvContrastList.count("Gist") + indvContrastList.count("Verbatim") >= 2:
                tempList=[]
