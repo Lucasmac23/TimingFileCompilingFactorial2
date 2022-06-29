@@ -70,8 +70,8 @@ if rewrite:
                     totalContrastListLength,outputName=outputName,
                      override=False, rewrite=True)
 else:
-    os.system('clear')
     for i in totalContrastList:
+        os.system('clear')
         indvContrastList=i.split("_")
         dictList=baseTimingFiles.keys()
         abortRedundantError=False
