@@ -28,7 +28,7 @@ currentContrastNumber=1
 
 def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], outputName="", totalContrastListLength=0,
                  currentContrastNumber=0, override=False, rewrite=False):
-    print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\r')
+    print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\n')
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
     if rewrite:
@@ -114,7 +114,6 @@ else:
                                                                          timingFile2, outputName, totalContrastListLength,
                                                                          currentContrastNumber, override=True, rewrite=rewrite)
                                     checker=False
-                                    abortRedundantError=True
                                 else:
                                     checker=False
                    if checker:
