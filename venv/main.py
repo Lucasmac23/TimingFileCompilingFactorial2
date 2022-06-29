@@ -62,6 +62,8 @@ baseTimingFilesCopyDict={
 "Risk":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/HC_01_Risk.txt"
 }
 rewrite = input("Would you like to rewrite copies of base timing files? (y/n): ")=="y"
+os.system('clear')
+
 if rewrite:
     for thing in baseTimingFilesCopyDict.keys():
         outputName=thing
@@ -77,9 +79,9 @@ else:
         abortRedundantError=False
         if i not in dictList:
             outputName=i
-            print("-------------------------------", end='\r')
-            print("Adding Timing Files for: " + i, end='\r')
-            print("-------------------------------", end='\r')
+            print("-------------------------------")
+            print("Adding Timing Files for: " + i)
+            print("-------------------------------")
             #Need to edit this part to switch between overlap and addition modes. If addition mode, need to feed in the right timing file (e.g., "VFraming+MFraming")
             if indvContrastList.count("Mixed") + indvContrastList.count("Gist") + indvContrastList.count("Verbatim") >= 2:
                tempList=[]
@@ -98,7 +100,7 @@ else:
                        else:
                             if j not in dictList:
                                 localOutputName=j
-                                print("Adding Timing Files for: " + j, end='\r')
+                                print("Adding Timing Files for: " + j)
                                 #reply=input("Continue? (yes/override): ")
                                 reply="yes"
                                 if reply=="yes":

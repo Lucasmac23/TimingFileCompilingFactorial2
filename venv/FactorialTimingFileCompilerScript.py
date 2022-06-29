@@ -129,9 +129,7 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
         else:
             for i in timingFileList:
                 subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/" + i[0][i[0].rfind("/"):])
-        print("Adding " + outputName[0] + " to subject #" + str(SubjNum) + " out of 132...", end='\r')
-
-        message = ("#" * int(SubjNum)) + "_" * (len(SubjList) - int(SubjNum))
+        message = ("Adding " + outputName[0] + " to subject #" + str(SubjNum) + " out of 132...\n"+"#" * int(SubjNum)) + "_" * (len(SubjList) - int(SubjNum))
         print(message, end='\r')
         with open(outputFilePath, 'w') as f:
             fileContents=('\n'.join(timingFileCompiler(subjTimingFileList, mode, rewrite)))
