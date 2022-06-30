@@ -41,7 +41,11 @@ print(totalContrastList)
 print("Total Combinations: " + str(len(totalContrastList)))
 totalContrastListLength=len(totalContrastList)
 currentContrastNumber=1
-
+def templateOscillator(switch=switch):
+    if switch[0]:
+        return '/TotalTimingFileListTemplate1.xlsx'
+    else:
+        return '/TotalTimingFileListTemplate.xlsx'
 
 def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], outputName="", totalContrastListLength=0,
                  currentContrastNumber=0, override=False, rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch):
@@ -49,14 +53,16 @@ def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], 
     print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\n')
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
+    workbook = load_workbook(filename=CWD + templateOscillator(switch))
+    sheet = workbook.active
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
                                              override=override,
-                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
+                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook, sheet=sheet)
     else:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
                                              override=override,
-                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
+                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook, sheet=sheet)
 
     baseTimingFiles[outputName] = returnTest
     return currentContrastNumber

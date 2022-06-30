@@ -10,13 +10,7 @@ if CWD.count('venv')==0:
     CWD=CWD+"/venv"
 timingFileList=[]
 outputName=[]
-switch=[[True]]
-alreadySwitch=[[False]]
-def templateOscillator(switch=switch):
-    if switch[0]:
-        return '/TotalTimingFileListTemplate1.xlsx'
-    else:
-        return '/TotalTimingFileListTemplate.xlsx'
+
 outputExcelPath=CWD+'/TotalTimingFileList'
 
 def addToExcel(location, content):
@@ -133,10 +127,7 @@ def timingFileCompiler(filesList, mode, rewrite):
 
 #recursively Iterate through directory to get individual subject timing files in timing File List
 def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], rewrite=False, override=False, prompt1=False, currentExcelLine=1, newExcelNumber=2, workbook=workbook, sheet=sheet, switch=False):
-    if alreadySwitch[0]==False:
-        workbook = load_workbook(filename=CWD + templateOscillator(switch))
-        sheet = workbook.active
-        alreadySwitch[0]=True;
+
     SubjList = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '011', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '027', '028', '029', '030', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083', '084', '085', '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', '097', '099', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '113', '114', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127', '128', '129', '130', '131', '132']
     if prompt1:
         directory='/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
