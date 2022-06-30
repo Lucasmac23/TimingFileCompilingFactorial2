@@ -6,8 +6,11 @@ from contrastCombinator import *
 import itertools
 import os
 directory = '/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
-baseTimingFiles={"Small":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Small.txt","Large":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Large.txt","Money":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Money.txt","Candy":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Candy.txt","Framing":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Framing.txt", "Gain":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Gain.txt", "Gist":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Gist.txt", "Mixed":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Mixed.txt", "Risk":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Risk.txt", "Loss":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Loss.txt", "NoFraming":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/NoFraming.txt", "Sure":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Sure.txt", "Verbatim":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Verbatim.txt"}
-
+prompt1=input("Type 1 if on Reyna-Lab; Type 2 if one Reyna-Lab-1: ")=="2"
+if prompt1:
+    baseTimingFiles={"Small":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Small.txt","Large":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Large.txt","Money":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Money.txt","Candy":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Candy.txt","Framing":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Framing.txt", "Gain":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Gain.txt", "Gist":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Gist.txt", "Mixed":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Mixed.txt", "Risk":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Risk.txt", "Loss":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Loss.txt", "NoFraming":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/NoFraming.txt", "Sure":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Sure.txt", "Verbatim":"/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Verbatim.txt"}
+else:
+    baseTimingFiles={"Small":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Small.txt","Large":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Large.txt","Money":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Money.txt","Candy":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Candy.txt","Framing":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Framing.txt", "Gain":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Gain.txt", "Gist":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Gist.txt", "Mixed":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Mixed.txt", "Risk":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Risk.txt", "Loss":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Loss.txt", "NoFraming":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/NoFraming.txt", "Sure":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Sure.txt", "Verbatim":"/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/Verbatim.txt"}
 
     #for i in range(len(baseTimingFiles)):
         #print("---------------------------------")
@@ -26,18 +29,18 @@ currentContrastNumber=1
 
 
 def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], outputName="", totalContrastListLength=0,
-                 currentContrastNumber=0, override=False, rewrite=False):
+                 currentContrastNumber=0, override=False, rewrite=False, prompt1=prompt1):
     print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\n')
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
                                              override=override,
-                                             outputName=[outputName], rewrite=True)
+                                             outputName=[outputName], rewrite=True, prompt1=prompt1)
     else:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
                                              override=override,
-                                             outputName=[outputName], rewrite=False)
+                                             outputName=[outputName], rewrite=False, prompt1=prompt1)
 
     baseTimingFiles[outputName] = returnTest
     return currentContrastNumber
@@ -67,7 +70,7 @@ if rewrite:
         mode="addition"
         addingHelper(baseTimingFiles, directory, mode, timingFile1,
                     totalContrastListLength,outputName=outputName,
-                     override=False, rewrite=True)
+                     override=False, rewrite=True, prompt1=prompt1)
 else:
     for i in totalContrastList:
         os.system('clear')
@@ -103,15 +106,18 @@ else:
                                     if not abortRedundantError:
                                      currentContrastNumber=addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, localOutputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=False, rewrite=rewrite)
+                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1)
                                 elif reply=="override":
                                     timingFile1="/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[0]+".txt"
                                     timingFile2="/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[1]+".txt"
+                                    if prompt1:
+                                        timingFile1="/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[0]+".txt"
+                                        timingFile2="/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[1]+".txt"
                                     mode="addition"
                                     if not abortRedundantError:
                                         currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=True, rewrite=rewrite)
+                                                                         currentContrastNumber, override=True, rewrite=rewrite, prompt1=prompt1)
                                     checker=False
                                 else:
                                     checker=False
@@ -122,7 +128,7 @@ else:
                         if not abortRedundantError:
                             currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=False, rewrite=rewrite)
+                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1)
 
             #handles the mode switch from overlap to addition when first making the different framing timing files
             else:
@@ -132,12 +138,4 @@ else:
                 if not abortRedundantError:
                     currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, rewrite=rewrite)
-
-
-
-
-
-
-
-
+                                                                         currentContrastNumber, rewrite=rewrite, prompt1=prompt1)
