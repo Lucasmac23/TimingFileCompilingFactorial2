@@ -7,7 +7,8 @@ ALL HOPE ABANDON YE WHO ENTER HERE...
 
 import openpyxl
 from openpyxl import load_workbook
-from FactorialTimingFileCompilerScript import *
+from FactorialTimingFileCompilerScript import recursiveFolderExplorer
+from FactorialTimingFileCompilterScript1 import recursiveFolderExplorer
 from contrastCombinator import *
 import itertools
 import os
@@ -53,15 +54,14 @@ def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], 
     print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\n')
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
-    workbook = CWD + templateOscillator(switch)
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
                                              override=override,
-                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook)
+                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
     else:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
                                              override=override,
-                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook)
+                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
 
     baseTimingFiles[outputName] = returnTest
     return currentContrastNumber
