@@ -12,7 +12,7 @@ def recursiveContrastCombo(inputList):
     if len(inputList)==2:
         output = withinListContrastCombinations([inputList[i]] + inputList[j:], True)
         outputList += output
-    while j<len(inputList)-1:
+    while j<len(inputList):
         outputList=withinListContrastCombinations(inputList, True)
         while i < len(outputList):
             if j < len(inputList)-1:
@@ -46,7 +46,11 @@ def withinListContrastCombinations(inputList, recursiveCall=False):
             while k < len(inputList):
                 outputList.append("_".join([inputList[i]] + [inputList[k]]))
                 if k+1!=len(inputList) and recursiveCall==False:
-                    outputList+=recursiveContrastCombo([outputList[-1]]+inputList[k+1:])
+                    output1=recursiveContrastCombo([outputList[-1]]+inputList[k+1:])
+                    output2=recursiveContrastCombo([output1[-1]]+inputList[k+1:])
+                    outputList+=output1
+                    outputList+=output2
+
                 k += 1
             i += 1
             j+=1
@@ -90,7 +94,7 @@ def filterContrasts(inputList):
                 orderedList[(len(tempList)-1)].append(inputList[i])
         i+=1
 
-
+    print(orderedList)
     return list(itertools.chain.from_iterable(orderedList))
 
 
