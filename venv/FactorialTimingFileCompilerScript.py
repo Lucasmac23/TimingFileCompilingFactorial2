@@ -130,9 +130,7 @@ def timingFileCompiler(filesList, mode, rewrite):
         #At end, have to change filesList[0] to the compiled timing file
 
 #recursively Iterate through directory to get individual subject timing files in timing File List
-def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], rewrite=False, override=False, prompt1=False, currentExcelLine=1, newExcelNumber=2):
-    workbook = load_workbook(filename=CWD + '/TotalTimingFileListTemplate.xlsx')
-    sheet = workbook.active
+def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], rewrite=False, override=False, prompt1=False, currentExcelLine=1, newExcelNumber=2, workbook=workbook, sheet=sheet):
     if currentExcelLine==2:
         workbook = load_workbook(filename=CWD + '/TotalTimingFileListTemplate.xlsx')
         sheet = workbook.active
