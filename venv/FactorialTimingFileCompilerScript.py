@@ -18,7 +18,7 @@ sheet = workbook.active
 
 outputExcelPath=CWD+'/TotalTimingFileList'
 
-def addToExcel(location, content, sheet):
+def addToExcel(location, content):
     #modify the desired cell
     sheet[location].value = content
 #v,m,g
