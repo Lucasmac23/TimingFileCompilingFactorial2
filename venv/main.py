@@ -105,6 +105,7 @@ if rewrite:
                      override=False, rewrite=True, prompt1=prompt1)
 else:
     #Iterates through the contrast list and assisns the correct mode and timing files in the timingfileslist.
+    overrideQuestion = input("Would you like to override the file recreation to force system to look for existing files? (y/n): ") == "n"
     for i in totalContrastList:
         #This is to start adding the timing files to a new excel spreadsheet every so often (Efficiency decreases exponentially with the length of the spreadsheet)
         if currentExcelLine >= 10000:
@@ -129,7 +130,6 @@ else:
                             tempList.append("_".join(j))
                    checker=True
                    breaker=False
-                   overrideQuestion=input("Would you like to override the file recreation to force system to look for existing files? (y/n): ")=="n"
                    for j in tempList:
                             if j not in dictList:
                                 localOutputName=j
