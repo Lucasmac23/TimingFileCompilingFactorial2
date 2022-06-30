@@ -1,2 +1,3 @@
-from FactorialTimingFileCompilerScript import *
-from FactorialTimingFileCompilerScript1 import *
+import FactorialTimingFileCompilerScript
+import FactorialTimingFileCompilerScript1
+import contrastCombinator
