@@ -8,7 +8,7 @@ ALL HOPE ABANDON YE WHO ENTER HERE...
 import FactorialTimingFileCompilerScript
 import FactorialTimingFileCompilerScript1
 from FactorialTimingFileCompilerScript import recursiveFolderExplorer
-from FactorialTimingFileCompilerScript1 import recursiveFolderExplorer
+from FactorialTimingFileCompilerScript1 import recursiveFolderExplorer1
 from contrastCombinator import *
 import itertools
 import os
@@ -55,14 +55,25 @@ def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], 
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
     if rewrite:
-        returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
-                                             override=override,
-                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+        if switch[0]:
+            returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
+                                                 override=override,
+                                                 outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+        else:
+            returnTest = recursiveFolderExplorer1(directory, mode=mode, timingFileList=[[timingFile1]],
+                                                 override=override,
+                                                 outputName=[outputName], rewrite=True, prompt1=prompt1,
+                                                 currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
     else:
-        returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
-                                             override=override,
-                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
-
+        if switch[0]:
+            returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
+                                                 override=override,
+                                                 outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+        else:
+            returnTest = recursiveFolderExplorer1(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
+                                                 override=override,
+                                                 outputName=[outputName], rewrite=False, prompt1=prompt1,
+                                                 currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
     baseTimingFiles[outputName] = returnTest
     return currentContrastNumber
 
