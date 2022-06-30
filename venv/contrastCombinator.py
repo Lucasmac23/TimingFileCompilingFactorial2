@@ -94,9 +94,8 @@ def filterContrasts(inputList):
             if len(tempList)>3:
                 if tempList.count(item)>1:
                     addCheck=False
-        for doohickey in orderedList[(len(tempList)-1)]:
-            if doohickey.count(inputList[i])!=0:
-                addCheck=False
+        if orderedList[(len(tempList)-1)].count(inputList[i])!=0:
+            addCheck=False
         if addCheck:
             if outputList.count(inputList[i])==0:
                 orderedList[(len(tempList)-1)].append(inputList[i])
