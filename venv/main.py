@@ -5,8 +5,8 @@
 ALL HOPE ABANDON YE WHO ENTER HERE...
 """
 
-import openpyxl
-from openpyxl import load_workbook
+import FactorialTimingFileCompilerScript
+import FactorialTimingFileCompilerScript1
 from FactorialTimingFileCompilerScript import recursiveFolderExplorer
 from FactorialTimingFileCompilterScript1 import recursiveFolderExplorer
 from contrastCombinator import *
