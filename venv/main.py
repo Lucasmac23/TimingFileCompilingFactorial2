@@ -53,7 +53,7 @@ def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], 
     print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\n')
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
-    workbook = load_workbook(filename=CWD + templateOscillator(switch))
+    workbook = CWD + templateOscillator(switch)
     sheet = workbook.active
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
