@@ -12,7 +12,7 @@ from contrastCombinator import *
 import itertools
 import os
 currentExcelLine=2
-newExcelNumber=3
+newExcelNumber=2
 #Setting up the excel File
 
 
