@@ -88,7 +88,9 @@ if rewrite:
                     totalContrastListLength,outputName=outputName,
                      override=False, rewrite=True, prompt1=prompt1)
 else:
+    #Iterates through the contrast list and assisns the correct mode and timing files in the timingfileslist.
     for i in totalContrastList:
+        #This is to start adding the timing files to a new excel spreadsheet every so often (Efficiency decreases exponentially with the length of the spreadsheet)
         if currentExcelLine >= 10000:
             currentExcelLine = 2
             newExcelNumber+=1
