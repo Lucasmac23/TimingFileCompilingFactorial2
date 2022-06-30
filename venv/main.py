@@ -12,6 +12,7 @@ from contrastCombinator import *
 import itertools
 import os
 currentExcelLine=2
+newExcelNumber=2
 #Setting up the excel File
 
 
@@ -35,24 +36,25 @@ else:
 MutuallyExclusiveContrastList=[["Verbatim","Mixed","Gist","Gain","Loss","Candy","Money","Large", "Small","Framing","NoFraming","Risk","Sure"]]
 totalContrastList=contrastCombinator(MutuallyExclusiveContrastList)
 print(totalContrastList)
+totalContrastList=totalContrastList[totalContrastList.find("Verbatim_Mixed_Loss_Candy_Sure"):]
 print("Total Combinations: " + str(len(totalContrastList)))
 totalContrastListLength=len(totalContrastList)
 currentContrastNumber=1
 
 
 def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], outputName="", totalContrastListLength=0,
-                 currentContrastNumber=0, override=False, rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine):
+                 currentContrastNumber=0, override=False, rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber):
     print("Starting Compilation of " + outputName + ", contrast #" + str(currentContrastNumber) + " out of " + str(totalContrastListLength) + "...", end='\n')
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
                                              override=override,
-                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine)
+                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
     else:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
                                              override=override,
-                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine)
+                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
 
     baseTimingFiles[outputName] = returnTest
     return currentContrastNumber
@@ -85,6 +87,9 @@ if rewrite:
                      override=False, rewrite=True, prompt1=prompt1)
 else:
     for i in totalContrastList:
+        if currentExcelLine >= 26876:
+            currentExcelLine = 2
+            newExcelNumber+=1
         print(currentExcelLine)
         os.system('clear')
         indvContrastList=i.split("_")
