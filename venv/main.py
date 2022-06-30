@@ -12,7 +12,7 @@ from contrastCombinator import *
 import itertools
 import os
 currentExcelLine=2
-newExcelNumber=2
+newExcelNumber=3
 #Setting up the excel File
 
 
@@ -35,7 +35,7 @@ else:
     #MutuallyExclusiveContrastList=[["Verbatim","Mixed","Gist"],["Gain","Loss"],["Candy","Money"],["Large", "Small"],["Framing","NoFraming"],["Risk","Sure"]]
 MutuallyExclusiveContrastList=[["Verbatim","Mixed","Gist","Gain","Loss","Candy","Money","Large", "Small","Framing","NoFraming","Risk","Sure"]]
 totalContrastList=contrastCombinator(MutuallyExclusiveContrastList)
-#totalContrastList=totalContrastList[totalContrastList.index("Verbatim_Mixed_Loss_Candy_Sure"):]
+totalContrastList=totalContrastList[totalContrastList.index("Verbatim_Mixed_Loss_Candy_Sure"):]
 print(totalContrastList)
 print("Total Combinations: " + str(len(totalContrastList)))
 totalContrastListLength=len(totalContrastList)
@@ -87,7 +87,7 @@ if rewrite:
                      override=False, rewrite=True, prompt1=prompt1)
 else:
     for i in totalContrastList:
-        if currentExcelLine >= 26876:
+        if currentExcelLine >= 10000:
             currentExcelLine = 2
             newExcelNumber+=1
         print(currentExcelLine)
