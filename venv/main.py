@@ -15,7 +15,7 @@ currentExcelLine=2
 newExcelNumber=2
 #Setting up the excel File
 
-
+switch=[[False]]
 
 #----
 directory = '/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
@@ -52,11 +52,11 @@ def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], 
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
                                              override=override,
-                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
     else:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
                                              override=override,
-                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
 
     baseTimingFiles[outputName] = returnTest
     return currentContrastNumber
@@ -91,9 +91,10 @@ else:
     #Iterates through the contrast list and assisns the correct mode and timing files in the timingfileslist.
     for i in totalContrastList:
         #This is to start adding the timing files to a new excel spreadsheet every so often (Efficiency decreases exponentially with the length of the spreadsheet)
-        if currentExcelLine >= 10000:
+        if currentExcelLine >= 350:
             currentExcelLine = 2
             newExcelNumber+=1
+            switch[0]=not switch[0]
         os.system('clear')
         indvContrastList=i.split("_")
         dictList=baseTimingFiles.keys()
@@ -125,7 +126,7 @@ else:
                                     if not abortRedundantError:
                                      currentContrastNumber=addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, localOutputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine)
+                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, switch=switch)
                                 elif reply=="override":
                                     #This whole mess is to get the total combinations of the name of the file we want
                                     outputNames1 = []
@@ -149,7 +150,7 @@ else:
                                     if not abortRedundantError:
                                         currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=True, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+                                                                         currentContrastNumber, override=True, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
                                     checker=False
                                 else:
                                     checker=False
@@ -160,7 +161,7 @@ else:
                         if not abortRedundantError:
                             currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
 
             #handles the mode switch from overlap to addition when first making the different framing timing files
             else:
@@ -170,5 +171,5 @@ else:
                 if not abortRedundantError:
                     currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
+                                                                         currentContrastNumber, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
         currentExcelLine+=125
