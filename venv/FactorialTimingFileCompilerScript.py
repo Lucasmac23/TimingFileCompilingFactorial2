@@ -11,6 +11,11 @@ if CWD.count('venv')==0:
 timingFileList=[]
 outputName=[]
 
+
+workbook = load_workbook(filename=CWD+'/TotalTimingFileListTemplate.xlsx')
+sheet = workbook.active
+
+
 outputExcelPath=CWD+'/TotalTimingFileList'
 
 def addToExcel(location, content, sheet):
@@ -126,9 +131,8 @@ def timingFileCompiler(filesList, mode, rewrite):
         #At end, have to change filesList[0] to the compiled timing file
 
 #recursively Iterate through directory to get individual subject timing files in timing File List
-def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], rewrite=False, override=False, prompt1=False, currentExcelLine=1, newExcelNumber=2, workbook='hi', switch=False):
-    workbook=load_workbook(filename=workbook)
-    sheet = workbook.active
+def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], rewrite=False, override=False, prompt1=False, currentExcelLine=1, newExcelNumber=2):
+
     SubjList = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '011', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '027', '028', '029', '030', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083', '084', '085', '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', '097', '099', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '113', '114', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127', '128', '129', '130', '131', '132']
     if prompt1:
         directory='/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
@@ -136,8 +140,8 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
         directory='/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
     for SubjNum in SubjList:
         localCount = 0
-        addToExcel('A'+str(currentExcelLine), outputName[0], sheet)
-        addToExcel('B' + str(currentExcelLine), 'sub-'+SubjNum, sheet)
+        addToExcel('A'+str(currentExcelLine), outputName[0])
+        addToExcel('B' + str(currentExcelLine), 'sub-'+SubjNum)
         outputFilePath=directory+"/sub-"+ SubjNum +"/func/timingFiles/"+outputName[0]+".txt"
         #print("outputFilePath: "+outputFilePath)
         subjTimingFileList=[]
@@ -181,7 +185,7 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
                 input("ERROR----timingFile Script Writing Empty File")
             f.writelines(fileContents)
             f.close
-        addToExcel('C' + str(currentExcelLine), str(localCount), sheet)
+        addToExcel('C' + str(currentExcelLine), str(localCount))
         currentExcelLine+=1
     workbook.save(outputExcelPath+str(newExcelNumber)+".xlsx")
     return outputFilePath
