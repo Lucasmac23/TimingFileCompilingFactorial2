@@ -87,7 +87,7 @@ if rewrite:
                      override=False, rewrite=True, prompt1=prompt1)
 else:
     for i in totalContrastList:
-        if currentExcelLine >= 10000:
+        if currentExcelLine >= 650:
             currentExcelLine = 2
             newExcelNumber+=1
         print(currentExcelLine)
@@ -148,7 +148,7 @@ else:
                                     if not abortRedundantError:
                                         currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=True, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine)
+                                                                         currentContrastNumber, override=True, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
                                     checker=False
                                 else:
                                     checker=False
@@ -159,7 +159,7 @@ else:
                         if not abortRedundantError:
                             currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine)
+                                                                         currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
 
             #handles the mode switch from overlap to addition when first making the different framing timing files
             else:
@@ -169,5 +169,5 @@ else:
                 if not abortRedundantError:
                     currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
-                                                                         currentContrastNumber, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine)
+                                                                         currentContrastNumber, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber)
         currentExcelLine+=125
