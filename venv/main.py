@@ -1,6 +1,11 @@
 # This is a sample Python script.
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+"""
+ALL HOPE ABANDON YE WHO ENTER HERE...
+"""
+
+
 from FactorialTimingFileCompilerScript import *
 from contrastCombinator import *
 import itertools
