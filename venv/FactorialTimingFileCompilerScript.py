@@ -4,16 +4,17 @@ import os
 import openpyxl
 from openpyxl import load_workbook
 directory = '/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
-
+CWD=input("What is your pwd? (You can get this by talking pwd into terminal): ")
 # iterate over files in
 # that directory
+if CWD.count('venv')==0:
+    CWD=CWD+"/venv"
 timingFileList=[]
 outputName=[]
-os. getcwd()
-outputExcelPath=os.getcwd()+'/TotalTimingFileList.xlsx'
-print(outputExcelPath)
+outputExcelPath=CWD+'/TotalTimingFileList.xlsx'
+
 #load excel file
-workbook = load_workbook(filename=os.getcwd()+'/TotalTimingFileListTemplate.xlsx')
+workbook = load_workbook(filename=CWD+'/TotalTimingFileListTemplate.xlsx')
 #open workbook
 sheet = workbook.active
 def addToExcel(location, content):
