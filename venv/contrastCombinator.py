@@ -100,7 +100,7 @@ def filterContrasts(inputList):
                 orderedList[(len(tempList)-1)].append(inputList[i])
         i+=1
 
-    print(orderedList)
+    #print(orderedList)
     finalTemp=list(itertools.chain.from_iterable(orderedList))
     return finalTemp
    #might need to revert
