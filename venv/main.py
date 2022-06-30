@@ -35,8 +35,8 @@ else:
     #MutuallyExclusiveContrastList=[["Verbatim","Mixed","Gist"],["Gain","Loss"],["Candy","Money"],["Large", "Small"],["Framing","NoFraming"],["Risk","Sure"]]
 MutuallyExclusiveContrastList=[["Verbatim","Mixed","Gist","Gain","Loss","Candy","Money","Large", "Small","Framing","NoFraming","Risk","Sure"]]
 totalContrastList=contrastCombinator(MutuallyExclusiveContrastList)
+totalContrastList=totalContrastList[totalContrastList.index("Verbatim_Mixed_Loss_Candy_Sure"):]
 print(totalContrastList)
-totalContrastList=totalContrastList[totalContrastList.find("Verbatim_Mixed_Loss_Candy_Sure"):]
 print("Total Combinations: " + str(len(totalContrastList)))
 totalContrastListLength=len(totalContrastList)
 currentContrastNumber=1
