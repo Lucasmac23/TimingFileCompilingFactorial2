@@ -47,7 +47,9 @@ def withinListContrastCombinations(inputList, recursiveCall=False):
                 outputList.append("_".join([inputList[i]] + [inputList[k]]))
                 if k+1!=len(inputList) and recursiveCall==False:
                     output1=recursiveContrastCombo([outputList[-1]]+inputList[k+1:])
-                    output2=recursiveContrastCombo([output1[-1]]+inputList[k+1:])
+                    output2=[]
+                    for thing in output1:
+                        output2+=recursiveContrastCombo([thing]+inputList[k+2:])
                     outputList+=output1
                     outputList+=output2
 
@@ -83,19 +85,28 @@ def filterContrasts(inputList):
     while i<len(inputList):
         tempList=inputList[i].split("_")
         #13
-
         addCheck=True
         for j in MutuallyExclusiveContrastsList:
             if j[0] in tempList:
                 if j[1] in tempList:
+                    addCheck = False
+        for item in tempList:
+            if len(tempList)>3:
+                if tempList.count(item)>1:
                     addCheck=False
+
         if addCheck:
             if outputList.count(inputList[i])==0:
                 orderedList[(len(tempList)-1)].append(inputList[i])
         i+=1
 
     print(orderedList)
-    return list(itertools.chain.from_iterable(orderedList))
+    finalTemp=list(itertools.chain.from_iterable(orderedList))
+    return finalTemp
+   #might need to revert
+#new_foods = [time for sublist in orderedList for time in sublist]
+
+    return orderedList
 
 
 
