@@ -87,7 +87,7 @@ if rewrite:
                      override=False, rewrite=True, prompt1=prompt1)
 else:
     for i in totalContrastList:
-        if currentExcelLine >= 650:
+        if currentExcelLine >= 10000:
             currentExcelLine = 2
             newExcelNumber+=1
         print(currentExcelLine)
