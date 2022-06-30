@@ -137,7 +137,6 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
                         fileExists=os.path.exists(tempPath)
                         if fileExists:
                             subjTimingFileList.append(timingFileList[0][0][0][:timingFileList[0][0][0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles/" + n)
-                            print("found")
                             break
                     if not fileExists:
                         input("error found on timingFileList[0]")
@@ -148,7 +147,6 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
                         fileExists = os.path.exists(tempPath)
                         if fileExists:
                             subjTimingFileList.append(timingFileList[1][0][0][:timingFileList[1][0][0].rfind("fmriprep/")] + "fmriprep/sub-" + SubjNum + "/func/timingFiles/" + n)
-                            print("found")
                             break
                     if not fileExists:
                         input("error found on timingFileList[1]")

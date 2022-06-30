@@ -115,13 +115,13 @@ else:
                                 elif reply=="override":
                                     #This whole mess is to get the total combinations of the name of the file we want
                                     outputNames1 = []
-                                    shortenedName = tempList[0][:-4]
+                                    shortenedName = tempList[0]
                                     newinput = shortenedName.split('_')
                                     testing = itertools.permutations(newinput)
                                     for i in list(map(list, testing)):
                                         outputNames1.append('_'.join(i) + ".txt")
                                     outputNames2 = []
-                                    shortenedName = tempList[1][:-4]
+                                    shortenedName = tempList[1]
                                     newinput = shortenedName.split('_')
                                     testing = itertools.permutations(newinput)
                                     for i in list(map(list, testing)):
