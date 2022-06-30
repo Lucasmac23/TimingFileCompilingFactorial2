@@ -8,7 +8,7 @@ ALL HOPE ABANDON YE WHO ENTER HERE...
 import FactorialTimingFileCompilerScript
 import FactorialTimingFileCompilerScript1
 from FactorialTimingFileCompilerScript import recursiveFolderExplorer
-from FactorialTimingFileCompilterScript1 import recursiveFolderExplorer
+from FactorialTimingFileCompilerScript1 import recursiveFolderExplorer
 from contrastCombinator import *
 import itertools
 import os
