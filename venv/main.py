@@ -128,8 +128,6 @@ else:
                                         outputNames2.append('_'.join(i) + ".txt")
                                     timingFile1 = ["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/", outputNames1]
                                     timingFile2 = ["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/",outputNames2]
-                                        #timingFile1=["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[0]+".txt"
-                                        #timingFile2=["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[1]+".txt"
                                     if prompt1:
                                         timingFile1=["/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/",outputNames1]
                                         timingFile2=["/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/",outputNames2]
