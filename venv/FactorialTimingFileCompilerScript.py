@@ -122,13 +122,40 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
     SubjList = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '011', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '027', '028', '029', '030', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083', '084', '085', '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', '097', '099', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '113', '114', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127', '128', '129', '130', '131', '132']
     if prompt1:
         directory='/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
+    else:
+        directory='/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
     for SubjNum in SubjList:
         outputFilePath=directory+"/sub-"+ SubjNum +"/func/timingFiles/"+outputName[0]+".txt"
         #print("outputFilePath: "+outputFilePath)
         subjTimingFileList=[]
         if not rewrite:
-            for i in timingFileList:
-                subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles" + i[0][i[0].rfind("/"):])
+            if override:
+                fileExists=False
+                while not fileExists:
+                    for n in timingFileList[0][0][1]:
+                        tempPath=timingFileList[0][0][0][:timingFileList[0][0][0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles/" + n
+                        fileExists=os.path.exists(tempPath)
+                        if fileExists:
+                            subjTimingFileList.append(timingFileList[0][0][0][:timingFileList[0][0][0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/timingFiles/" + n)
+                            print("found")
+                            break
+                    if not fileExists:
+                        input("error found on timingFileList[0]")
+                fileExists=False
+                while not fileExists:
+                    for n in timingFileList[1][0][1]:
+                        tempPath = timingFileList[1][0][0][:timingFileList[1][0][0].rfind("fmriprep/")] + "fmriprep/sub-" + SubjNum + "/func/timingFiles/" + n
+                        fileExists = os.path.exists(tempPath)
+                        if fileExists:
+                            subjTimingFileList.append(timingFileList[1][0][0][:timingFileList[1][0][0].rfind("fmriprep/")] + "fmriprep/sub-" + SubjNum + "/func/timingFiles/" + n)
+                            print("found")
+                            break
+                    if not fileExists:
+                        input("error found on timingFileList[1]")
+            else:
+                for a in timingFileList:
+                    for item in a:
+                        subjTimingFileList.append(item[:item.rfind('-')+1]+SubjNum+'/func/timingFiles'+item[item.rfind('/'):])
         else:
             for i in timingFileList:
                 subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/" + i[0][i[0].rfind("/"):])

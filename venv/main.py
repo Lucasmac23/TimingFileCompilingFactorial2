@@ -113,11 +113,26 @@ else:
                                                                          timingFile2, localOutputName, totalContrastListLength,
                                                                          currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1)
                                 elif reply=="override":
-                                    timingFile1="/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[0]+".txt"
-                                    timingFile2="/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[1]+".txt"
+                                    #This whole mess is to get the total combinations of the name of the file we want
+                                    outputNames1 = []
+                                    shortenedName = tempList[0][:-4]
+                                    newinput = shortenedName.split('_')
+                                    testing = itertools.permutations(newinput)
+                                    for i in list(map(list, testing)):
+                                        outputNames1.append('_'.join(i) + ".txt")
+                                    outputNames2 = []
+                                    shortenedName = tempList[1][:-4]
+                                    newinput = shortenedName.split('_')
+                                    testing = itertools.permutations(newinput)
+                                    for i in list(map(list, testing)):
+                                        outputNames2.append('_'.join(i) + ".txt")
+                                    timingFile1 = ["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/", outputNames1]
+                                    timingFile2 = ["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/",outputNames2]
+                                        #timingFile1=["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[0]+".txt"
+                                        #timingFile2=["/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[1]+".txt"
                                     if prompt1:
-                                        timingFile1="/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[0]+".txt"
-                                        timingFile2="/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/"+tempList[1]+".txt"
+                                        timingFile1=["/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/",outputNames1]
+                                        timingFile2=["/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/",outputNames2]
                                     mode="addition"
                                     if not abortRedundantError:
                                         currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
