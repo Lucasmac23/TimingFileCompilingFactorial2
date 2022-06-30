@@ -13,7 +13,7 @@ outputName=[]
 
 outputExcelPath=CWD+'/TotalTimingFileList'
 
-def addToExcel(location, content):
+def addToExcel(location, content, sheet):
     #modify the desired cell
     sheet[location].value = content
 #v,m,g
@@ -135,8 +135,8 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
         directory='/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
     for SubjNum in SubjList:
         localCount = 0
-        addToExcel('A'+str(currentExcelLine), outputName[0])
-        addToExcel('B' + str(currentExcelLine), 'sub-'+SubjNum)
+        addToExcel('A'+str(currentExcelLine), outputName[0], sheet)
+        addToExcel('B' + str(currentExcelLine), 'sub-'+SubjNum, sheet)
         outputFilePath=directory+"/sub-"+ SubjNum +"/func/timingFiles/"+outputName[0]+".txt"
         #print("outputFilePath: "+outputFilePath)
         subjTimingFileList=[]
@@ -180,7 +180,7 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
                 input("ERROR----timingFile Script Writing Empty File")
             f.writelines(fileContents)
             f.close
-        addToExcel('C' + str(currentExcelLine), str(localCount))
+        addToExcel('C' + str(currentExcelLine), str(localCount), sheet)
         currentExcelLine+=1
     workbook.save(outputExcelPath+str(newExcelNumber)+".xlsx")
     return outputFilePath
