@@ -113,7 +113,6 @@ else:
                    for j in tempList:
                             if j not in dictList:
                                 localOutputName=j
-                                print("Adding Timing Files for: " + j +"\n")
                                 #reply=input("Continue? (yes/override): ")
                                 reply="override"
                                 if reply=="yes":
