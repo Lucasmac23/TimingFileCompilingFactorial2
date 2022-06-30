@@ -90,14 +90,12 @@ else:
         if currentExcelLine >= 10000:
             currentExcelLine = 2
             newExcelNumber+=1
-        print(currentExcelLine)
         os.system('clear')
         indvContrastList=i.split("_")
         dictList=baseTimingFiles.keys()
         abortRedundantError=False
         if i not in dictList:
             outputName=i
-            print("Adding Timing Files for: " + i +"\n")
             #Need to edit this part to switch between overlap and addition modes. If addition mode, need to feed in the right timing file (e.g., "VFraming+MFraming")
             if indvContrastList.count("Mixed") + indvContrastList.count("Gist") + indvContrastList.count("Verbatim") >= 2:
                tempList=[]
