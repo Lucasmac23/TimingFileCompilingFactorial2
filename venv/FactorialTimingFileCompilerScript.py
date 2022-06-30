@@ -3,7 +3,7 @@ import os
 import openpyxl
 from openpyxl import load_workbook
 directory = '/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
-CWD=input("What is your pwd? (You can get this by talking pwd into terminal): ").strip()
+CWD=input("What is your pwd? (You can get this by typing pwd into terminal or by dragging your folder): ").strip()
 # iterate over files in
 # that directory
 if CWD.count('venv')==0:

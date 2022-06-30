@@ -129,12 +129,11 @@ else:
                             tempList.append("_".join(j))
                    checker=True
                    breaker=False
+                   overrideQuestion=input("Would you like to override the file recreation to force system to look for existing files? (y/n): ")=="n"
                    for j in tempList:
                             if j not in dictList:
                                 localOutputName=j
-                                #reply=input("Continue? (yes/override): ")
-                                reply="override"
-                                if reply=="yes":
+                                if overrideQuestion:
                                     tempSplitting=j.split("_")
                                     timingFile1=baseTimingFiles[tempSplitting[0]]
                                     timingFile2=baseTimingFiles[tempSplitting[1]]
@@ -143,7 +142,7 @@ else:
                                      currentContrastNumber=addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, localOutputName, totalContrastListLength,
                                                                          currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, switch=switch)
-                                elif reply=="override":
+                                else:
                                     #This whole mess is to get the total combinations of the name of the file we want
                                     outputNames1 = []
                                     shortenedName = tempList[0]
@@ -167,8 +166,6 @@ else:
                                         currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
                                                                          currentContrastNumber, override=True, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
-                                    checker=False
-                                else:
                                     checker=False
                    if checker:
                         timingFile1=baseTimingFiles[tempList[0]]
