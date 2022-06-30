@@ -15,7 +15,7 @@ currentExcelLine=2
 newExcelNumber=2
 #Setting up the excel File
 
-switch=[[False]]
+switch=[[True]]
 
 #----
 directory = '/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
