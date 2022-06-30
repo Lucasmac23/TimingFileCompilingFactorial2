@@ -19,10 +19,6 @@ def templateOscillator(switch=switch):
         return '/TotalTimingFileListTemplate.xlsx'
 outputExcelPath=CWD+'/TotalTimingFileList'
 
-#load excel file
-workbook = load_workbook(filename=CWD+'/TotalTimingFileListTemplate.xlsx')
-#open workbook
-sheet = workbook.active
 def addToExcel(location, content):
     #modify the desired cell
     sheet[location].value = content
