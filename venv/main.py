@@ -54,15 +54,14 @@ def addingHelper(baseTimingFiles, directory, mode, timingFile1, timingFile2=[], 
     print("#" * currentContrastNumber + "_" * (totalContrastListLength - currentContrastNumber)+"\n")
     currentContrastNumber += 1
     workbook = CWD + templateOscillator(switch)
-    sheet = workbook.active
     if rewrite:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1]],
                                              override=override,
-                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook, sheet=sheet)
+                                             outputName=[outputName], rewrite=True, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook)
     else:
         returnTest = recursiveFolderExplorer(directory, mode=mode, timingFileList=[[timingFile1], [timingFile2]],
                                              override=override,
-                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook, sheet=sheet)
+                                             outputName=[outputName], rewrite=False, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch, workbook=workbook)
 
     baseTimingFiles[outputName] = returnTest
     return currentContrastNumber
