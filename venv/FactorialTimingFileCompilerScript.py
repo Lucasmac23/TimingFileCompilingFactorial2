@@ -109,6 +109,7 @@ def timingFileCompiler(filesList, mode, rewrite):
             elif mode=="addition":
                 if "*" in splitlines2 and "*" in splitlines1:
                     rewrite=True
+                    splitlines2=[]
                 elif "*" in splitlines2:
                     splitlines2=[]
                 elif "*" in splitlines1:
@@ -184,7 +185,6 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
             pass
         else:
             with open(outputFilePath, 'w') as f:
-                returnedFileLines=timingFileCompiler(subjTimingFileList, mode, rewrite)
                 fileContents=('\n'.join(returnedFileLines))
                 if fileContents=='':
                     input("ERROR----timingFile Script Writing Empty File")

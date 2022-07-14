@@ -109,6 +109,7 @@ def timingFileCompiler(filesList, mode, rewrite):
             elif mode=="addition":
                 if "*" in splitlines2 and "*" in splitlines1:
                     rewrite=True
+                    splitlines2=[]
                 elif "*" in splitlines2:
                     splitlines2=[]
                 elif "*" in splitlines1:

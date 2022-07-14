@@ -134,12 +134,8 @@ else:
                             if j not in dictList:
                                 localOutputName=j
                                 if overrideQuestion:
-                                    print("Making "+j)
-                                    tempSplitting=j.split("_")
-                                    timingFileName1="_".join(tempContrastList[:-1])
-                                    timingFileName2="_".join(tempContrastList[:-2]+[tempContrastList[-1]])
-                                    timingFile1=baseTimingFiles[timingFileName1]
-                                    timingFile2=baseTimingFiles[timingFileName2]
+                                    timingFile1=baseTimingFiles[tempList[0]]
+                                    timingFile2=baseTimingFiles[tempList[1]]
                                     mode="overlap"
                                     if not abortRedundantError:
                                      currentContrastNumber=addingHelper(baseTimingFiles, directory, mode, timingFile1,
