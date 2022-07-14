@@ -138,10 +138,9 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
         directory='/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
     else:
         directory='/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep'
+    localCount=0
+    addToExcel('A' + str(currentExcelLine), outputName[0])
     for SubjNum in SubjList:
-        localCount = 0
-        addToExcel('A'+str(currentExcelLine), outputName[0])
-        addToExcel('B' + str(currentExcelLine), 'sub-'+SubjNum)
         outputFilePath=directory+"/sub-"+ SubjNum +"/func/timingFiles/"+outputName[0]+".txt"
         #print("outputFilePath: "+outputFilePath)
         subjTimingFileList=[]
@@ -175,17 +174,22 @@ def recursiveFolderExplorer(directory, mode, timingFileList=[], outputName=[], r
             for i in timingFileList:
                 subjTimingFileList.append(i[0][:i[0].rfind("fmriprep/")] + "fmriprep/sub-"+SubjNum+"/func/" + i[0][i[0].rfind("/"):])
         print("\rAdding to subject #" + str(SubjNum) + " out of 132:"+"#" * int(SubjNum) + "_" * (len(SubjList) - int(SubjNum)), end='')
-        with open(outputFilePath, 'w') as f:
-            returnedFileLines=timingFileCompiler(subjTimingFileList, mode, rewrite)
-            for line in returnedFileLines:
-                for number in line:
-                    localCount+=1
-            fileContents=('\n'.join(returnedFileLines))
-            if fileContents=='':
-                input("ERROR----timingFile Script Writing Empty File")
-            f.writelines(fileContents)
-            f.close
-        addToExcel('C' + str(currentExcelLine), str(localCount))
-        currentExcelLine+=1
+        returnedFileLines = timingFileCompiler(subjTimingFileList, mode, rewrite)
+        starCount = 0
+        for line in returnedFileLines:
+            starCount += line.count("*")
+            for number in line:
+                localCount += 1
+        if starCount > 2:
+            pass
+        else:
+            with open(outputFilePath, 'w') as f:
+                returnedFileLines=timingFileCompiler(subjTimingFileList, mode, rewrite)
+                fileContents=('\n'.join(returnedFileLines))
+                if fileContents=='':
+                    input("ERROR----timingFile Script Writing Empty File")
+                f.writelines(fileContents)
+                f.close
+    addToExcel('C' + str(currentExcelLine), int(localCount//125))
     workbook.save(outputExcelPath+str(newExcelNumber)+".xlsx")
     return outputFilePath

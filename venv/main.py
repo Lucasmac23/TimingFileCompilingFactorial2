@@ -37,7 +37,7 @@ else:
 MutuallyExclusiveContrastList=[["Verbatim","Mixed","Gist","Gain","Loss","Candy","Money","Large", "Small","Framing","NoFraming","Risk","Sure"]]
 totalContrastList=contrastCombinator(MutuallyExclusiveContrastList)
 #Way to restart the program a portion of the way through
-totalContrastList=totalContrastList[totalContrastList.index("Verbatim_Mixed_Loss_Candy_Sure"):]
+#totalContrastList= totalContrastList[totalContrastList.index("Verbatim_Candy_Large"):]
 print(totalContrastList)
 print("Total Combinations: " + str(len(totalContrastList)))
 totalContrastListLength=len(totalContrastList)
@@ -134,9 +134,12 @@ else:
                             if j not in dictList:
                                 localOutputName=j
                                 if overrideQuestion:
+                                    print("Making "+j)
                                     tempSplitting=j.split("_")
-                                    timingFile1=baseTimingFiles[tempSplitting[0]]
-                                    timingFile2=baseTimingFiles[tempSplitting[1]]
+                                    timingFileName1="_".join(tempContrastList[:-1])
+                                    timingFileName2="_".join(tempContrastList[:-2]+[tempContrastList[-1]])
+                                    timingFile1=baseTimingFiles[timingFileName1]
+                                    timingFile2=baseTimingFiles[timingFileName2]
                                     mode="overlap"
                                     if not abortRedundantError:
                                      currentContrastNumber=addingHelper(baseTimingFiles, directory, mode, timingFile1,
@@ -168,21 +171,48 @@ else:
                                                                          currentContrastNumber, override=True, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
                                     checker=False
                    if checker:
-                        timingFile1=baseTimingFiles[tempList[0]]
-                        timingFile2=baseTimingFiles[tempList[1]]
-                        mode="addition"
-                        if not abortRedundantError:
+                     if len(tempList)>2:
+                        timingFileName1 = "_".join(tempList[:-1])
+                        timingFileName2 = "_".join(tempList[:-2] + [tempList[-1]])
+                     else:
+                         timingFileName1=tempList[0]
+                         timingFileName2=tempList[1]
+                     timingFile1 = baseTimingFiles[timingFileName1]
+                     timingFile2 = baseTimingFiles[timingFileName2]
+                     mode="addition"
+                     if not abortRedundantError:
                             currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
                                                                          currentContrastNumber, override=False, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
 
             #handles the mode switch from overlap to addition when first making the different framing timing files
             else:
-                timingFile1=baseTimingFiles[indvContrastList[0]]
-                timingFile2=baseTimingFiles[indvContrastList[1]]
+                tempContrastList=[]
+                for i in range(len(indvContrastList)):
+                    tempContrastList.append(indvContrastList[i])
+                if len(indvContrastList)>2:
+                    timingFileName1="_".join(tempContrastList[:-1])
+                    timingFileName2="_".join(tempContrastList[:-2]+[tempContrastList[-1]])
+                    if overrideQuestion:
+                        timingFile1=baseTimingFiles[timingFileName1]
+                        timingFile2=baseTimingFiles[timingFileName2]
+                    else:
+                        if prompt1:
+                            timingFile1="/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/" + timingFileName1 +".txt"
+                            timingFile2 = "/System/Volumes/Data/Volumes/Reyna-Lab-1/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/" + timingFileName2 +".txt"
+                        else:
+                            timingFile1 = "/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/" + timingFileName1 + ".txt"
+                            timingFile2 = "/System/Volumes/Data/Volumes/Reyna-Lab/Lab/HotCold/Databases/HC_1stHalfFunctional/Output/fmriprep/sub-001/func/timingFiles/" + timingFileName2 + ".txt"
+                        if os.path.exists(timingFile1) and os.path.exists(timingFile2):
+                            pass
+                        else:
+                            input("ERROR: path does no exist for files: " + timingFile1 + " and " + timingFile2)
+                else:
+                    timingFile1=baseTimingFiles[indvContrastList[0]]
+                    timingFile2=baseTimingFiles[indvContrastList[1]]
                 mode="overlap"
                 if not abortRedundantError:
                     currentContrastNumber = addingHelper(baseTimingFiles, directory, mode, timingFile1,
                                                                          timingFile2, outputName, totalContrastListLength,
                                                                          currentContrastNumber, rewrite=rewrite, prompt1=prompt1, currentExcelLine=currentExcelLine, newExcelNumber=newExcelNumber, switch=switch)
-        currentExcelLine+=125
+        currentExcelLine+=1
